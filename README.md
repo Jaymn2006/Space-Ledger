@@ -2,13 +2,13 @@
 
 **Space Ledger** is an open-source shared digital-canvas prototype built on **Solana Devnet**. Its design contains 10 billion blocks with 100 pixel positions per block, for a theoretical capacity of 1 trillion pixel positions.
 
-> **Network status:** The Space Ledger canvas application and its Anchor program are Devnet-only. Devnet SOL and Devnet USDC have no real-world value. The separate $SL token is a Solana Mainnet asset; it is not the canvas program, does not represent ownership of canvas blocks, and is not required to test the Devnet application.
+> **Network status:** The Space Ledger canvas application and its Anchor program are Devnet-only. Devnet SOL and Devnet USDC have no real-world value. The separate external token token is a Solana Mainnet asset; it is not the canvas program, does not represent ownership of canvas blocks, and is not required to test the Devnet application.
 
 | | |
 |---|---|
 | **Live application** | [space-ledger-alitiora.vercel.app](https://space-ledger-alitiora.vercel.app) |
 | **Source code** | [Alitiora-Initiative/Space-Ledger](https://github.com/Alitiora-Initiative/Space-Ledger) |
-| **$SL information page** | [Space Ledger token page](https://space-ledger-alitiora.vercel.app/pages/token.html) |
+| **external token information page** | Token details are no longer part of this project. |
 | **Canvas program (Devnet)** | `EbP7vsnMXPonTfriPUFynco69d69JiXpWbKnwVmz8sgG` |
 | **Operator** | Joseph Mushelle Nyingeh · Alitiora Initiative · Kenya |
 | **Contact** | [jaymnyon@gmail.com](mailto:jaymnyon@gmail.com) |
@@ -24,7 +24,7 @@ The repository contains a publicly accessible Devnet beta. The following are imp
 - **Wallet connectivity:** Wallet Standard-compatible Solana wallets, including Phantom and Solflare when exposed by the browser.
 - **Grid and chunk API:** a virtualized canvas/grid experience and `/api/grid/chunk` endpoint for bounded block queries.
 - **Quotes and transaction flow:** balance-aware quotes, wallet approval, transaction confirmation and Explorer links.
-- **Supporting application pages and APIs:** grid, profile/dashboard, leaderboard, treasury, market and token-information interfaces.
+- **Supporting application pages and APIs:** grid, profile/dashboard, leaderboard, treasury and market interfaces.
 - **Operational protections:** API rate limits, a short-lived config cache, server-side RPC configuration and HTTP security headers.
 - **Developer resources:** automated Node.js tests, Rust/Anchor program source, local setup instructions and Devnet beta documentation.
 - **Release 1 foundations:** pre-wallet purchase-intent recovery, private Devnet receipt-indexer tables and a replay-safe one-shot worker, installable PWA shell and device-tier guidance. Indexing remains inactive until server-side credentials and a worker are configured.
@@ -44,7 +44,7 @@ The repository records an operator-approved Devnet purchase and receipt in its h
 | Independent program security audit | Not completed |
 | Canvas application mainnet migration | Out of scope until separate technical, security and legal review |
 
-Do not treat the separate $SL token's Mainnet presence as a Mainnet deployment of the canvas application.
+Do not treat the separate external token token's Mainnet presence as a Mainnet deployment of the canvas application.
 
 ## Funding proposal and execution plan
 
@@ -66,6 +66,14 @@ The detailed scope, tasks, acceptance criteria, evidence log, schedule and AI co
 
 The project is independently maintained and currently operates with limited capital. Development instructions therefore prioritise existing dependencies, Solana Devnet, public/free-tier tooling and low-cost reproducible workflows. Do not introduce paid APIs, subscriptions, infrastructure commitments or other recurring costs without explicit maintainer approval.
 
+## Mainnet cutover checklist
+
+The application is network-configurable but remains fail-closed for production until every Mainnet identity is explicitly supplied. Do not reuse Devnet addresses or the Devnet program ID.
+
+Set these production variables together: `SOLANA_NETWORK=mainnet-beta`, `SOLANA_RPC_URL`, `SOLANA_PROGRAM_ID`, `FEE_WALLET_ADDRESS`, `SOLANA_USDC_MINT`, `SOLANA_PYTH_PROGRAM`, `SOLANA_SOL_USD_FEED`, and `SOLANA_SOL_USD_FEED_ID`. Verify each address on Solana Mainnet, deploy the reviewed program with a controlled upgrade authority, run the migration/indexer verification, and only then switch the wallet network and public RPC configuration. Missing or incomplete Mainnet configuration intentionally prevents production startup.
+
+The repository does not claim a Mainnet deployment until the program ID, upgrade authority, treasury, token mint, oracle feed, and deployment transaction have been independently recorded.
+
 ## How to test the Devnet beta
 
 1. Install Phantom or Solflare, or another supported Solana wallet.
@@ -81,9 +89,9 @@ Devnet RPC services can be rate-limited or temporarily unavailable. A failed req
 
 See the [Devnet Beta Guide](docs/Space-Ledger-Devnet-Beta-Guide.md) and [Beta Verification notes](docs/BETA_VERIFICATION.md) for additional procedures.
 
-## The separate $SL token
+## The separate external token token
 
-[Space Ledger ($SL)](https://space-ledger-alitiora.vercel.app/pages/token.html) is a separate Solana Mainnet token. The repository identifies its mint as:
+[Space Ledger (external token)](https://space-ledger-alitiora.vercel.app/pages/token.html) is a separate Solana Mainnet token. The repository identifies its mint as:
 
 `42UNqmUTuKuKZ5mwo2r5y3cNoPv38P8fxAisqQLXdT6u`
 
